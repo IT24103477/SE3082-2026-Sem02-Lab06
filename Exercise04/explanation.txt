@@ -1,0 +1,9 @@
+Part 1 explanation (plain parallel for):
+Only the outer loop (r, which has 5 iterations) is split among threads. The default static schedule gives each thread a contiguous block of r values. With 4 threads, a typical split is r=1,2 / r=3 / r=4 / r=5.
+Each thread runs all 10 k iterations for each of its r values. k is private automatically because it is declared inside the loop.
+Problem: with only 5 outer iterations, any thread count above 5 leaves threads idle, and the work splits unevenly.
+
+Part 2 explanation (collapse(2)):
+The two loops are merged into one iteration space of 5 × 10 = 50 iterations, which is then divided among threads. With 4 threads, that is roughly 13, 13, 12 and 12 iterations.
+The output now shows a single r value shared across different threads.
+Reason it matters: collapse gives better load balance when the outer loop is too short to keep all threads busy.
