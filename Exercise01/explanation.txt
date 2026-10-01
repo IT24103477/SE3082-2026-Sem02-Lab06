@@ -1,0 +1,1 @@
+A barrier is a synchronization point. Every thread in the team must reach it before any thread is allowed to continue. So all the pre-barrier prints finish first. After the barrier, the threads run independently again, and their order is unpredictable.
