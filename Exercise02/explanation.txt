@@ -1,0 +1,5 @@
+The block runs on exactly one thread: whichever thread reaches it first. That isn't necessarily thread 0, and run it a few times to see it change.
+single has an implicit barrier at its end. The other threads wait until the single block finishes, which is why every Hi again comes after it.
+This is useful for one-time work like initialization or I/O inside a parallel region1~The block runs on exactly one thread: whichever thread reaches it first. That isn't necessarily thread 0, and run it a few times to see it change.
+single has an implicit barrier at its end. The other threads wait until the single block finishes, which is why every Hi again comes after it.
+This is useful for one-time work like initialization or I/O inside a parallel region
